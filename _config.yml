@@ -1,0 +1,38 @@
+# Setups
+title:            Qinye Li
+tagline:
+email:            qinyeli@umich.edu
+description:
+url:              "http://qinyeli.github.io/"
+baseurl:          /
+github_username:  qinyeli
+author:
+  name:           "Qinye Li"
+  url:            qinyeli.github.io
+
+# Where things are
+# source:       .
+# destination:  ./_site
+# plugins_dir:  _plugins
+# layouts_dir:  _layouts
+# data_dir:     _data
+# includes_dir: _includes
+collections:
+  posts:
+    output:        true
+    permalink:     date #/:categories/:year/:month/:day/:title.html
+    #permalink:     pretty #/:categories/:year/:month/:day/:title/
+    relative_permalinks: true
+
+# Conversion
+markdown:          kramdown
+kramdown:
+  input:           GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+#highlighter:       pygments
+
+# Setup
+paginate_path:     "/blogs/page:num/"
+paginate:          5
+
+# Plugins
+gems:             [jekyll-paginate, jekyll-gist]
