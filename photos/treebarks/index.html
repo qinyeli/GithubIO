@@ -1,0 +1,54 @@
+---
+layout: default
+title: Treebarks
+---
+
+<h1>Treebarks</h1>
+
+<p>
+This is a collection of tree bark photos I've taken in Yosemite, Everglades, Olympic National Park, and the Forbidden City and some other random places I have been to.
+</p>
+
+<p>
+I love their textures 🐞.
+</p>
+
+<div id="imgs" class="imggrid"></div>
+
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyDc6JUM0YsLYEq210vcp5kh_Mz8XTsHPh8",
+    authDomain: "githubio-a45cc.firebaseapp.com",
+    projectId: "githubio-a45cc",
+    storageBucket: "githubio-a45cc.appspot.com",
+    messagingSenderId: "143751235387",
+    appId: "1:143751235387:web:79e4a453934889b352d91e"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  var storage = firebase.storage();
+  var storageRef = storage.ref();
+  var listRef = storageRef.child("treebarks/");
+  listRef.listAll()
+    .then((res) => {
+      var imggrid = document.getElementById("imgs");
+      res.items.forEach((itemRef) => {
+        itemRef.getDownloadURL()
+          .then((url) => {
+            var img = document.createElement("img");
+            img.setAttribute("src", url);
+            imggrid.appendChild(img);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
+</script>
+
+<!-- TODO: show detailed infos when hovering on the photos. -->
