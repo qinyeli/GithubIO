@@ -8,5 +8,5 @@
   width: 200px;
   height: 200px;
   margin: 0.6rem 0.3rem 0;
-  display: inline;
+  object-fit: cover;
 }
