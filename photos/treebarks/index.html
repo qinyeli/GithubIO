@@ -13,7 +13,8 @@ This is a collection of tree bark photos I've taken in Yosemite, Everglades, Oly
 I love their textures 🐞.
 </p>
 
-<div id="imgs" class="imggrid"></div>
+<div class="imggrid" id="imgs">
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
@@ -32,19 +33,37 @@ I love their textures 🐞.
   var storage = firebase.storage();
   var storageRef = storage.ref();
   var listRef = storageRef.child("treebarks/");
+  var count = 0;
   listRef.listAll()
     .then((res) => {
       var imggrid = document.getElementById("imgs");
       res.items.forEach((itemRef) => {
+        if (count % 3 === 0) {
+          var row = document.createElement("div");
+          row.setAttribute("class", "row g-0");
+          imggrid.appendChild(row);
+
+          for (var i = 0; i < 3; ++i) {
+            var col = document.createElement("div");
+            col.setAttribute("class", "col g-2");
+            row.appendChild(col);
+          }
+        }
+
+        let rowId = ~~(count/3);
+        let colId = count % 3;
         itemRef.getDownloadURL()
           .then((url) => {
             var img = document.createElement("img");
             img.setAttribute("src", url);
-            imggrid.appendChild(img);
+            img.setAttribute("class", "img-fluid");
+            imggrid.children[rowId].children[colId].appendChild(img);
           })
           .catch((error) => {
             console.log(error);
           });
+
+        ++count;
       });
     }).catch((error) => {
       console.log(error);
