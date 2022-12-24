@@ -9,6 +9,7 @@ github_username:  qinyeli
 author:
   name:           "Qinye Li"
   url:            qinyeli.github.io
+repository: qinyeli/qinyeli.github.io
 
 # Where things are
 # source:       .
@@ -35,4 +36,4 @@ paginate_path:     "/blogs/page:num/"
 paginate:          5
 
 # Plugins
-gems:             [jekyll-paginate, jekyll-gist]
+plugins:             [jekyll-paginate, jekyll-gist]
